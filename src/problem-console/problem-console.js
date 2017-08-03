@@ -1,6 +1,7 @@
 const fs = require("fs");
 const chokidar = require("chokidar");
 const readline = require('readline');
+var ObjectUtil = require("common-utils/object-util.js").ObjectUtil;
 var ProblemRunner = require("./problem-runner.js").ProblemRunner;
 
 const ProblemConsole = {
@@ -9,8 +10,12 @@ const ProblemConsole = {
             fastFail: true,
         };
 
-        const compile = function() {
-            ProblemRunner.runSample(wd, options);
+        const rerun = function() {
+            try {
+                ProblemRunner.runSample(wd, options);
+            } catch (e) {
+                console.error(e);
+            }
         };
 
         chokidar
@@ -24,14 +29,20 @@ const ProblemConsole = {
             )
             .on('all', (event, path) => {
                 // console.log(event, path);
-                compile();
+                rerun();
             })
         ;
 
-        compile();
+        rerun();
 
         readStdIn({
-            "ff": () => options.fastFail = !options.fastFail,
+            "": () => {
+                rerun();
+            },
+            "ff": () => {
+                options.fastFail = !options.fastFail;
+                rerun();
+            },
         });
     }
 };
@@ -43,16 +54,24 @@ function readStdIn(cmds) {
         output: process.stdout
     });
 
-    rl.question('Command? (ff) ', (answer) => {
+    console.log(`Type any command in: ${ObjectUtil.keys(cmds).map((cmd) => cmd=="" ? "<Enter>" : cmd).join(", ")}`);
 
-        let cmd = cmds[answer];
-        if (cmd) {
-            cmd();
-            console.log("Ok");
-        }
+    function serve() {
+        setTimeout(() => {
 
-    });
-    // rl.close();
+            rl.question('', (answer) => {
+
+                let cmd = cmds[answer];
+                if (cmd) {
+                    cmd();
+                }
+
+                serve();
+            });
+        }, 100);
+    }
+
+    serve();
 }
 
 exports.ProblemConsole = ProblemConsole;

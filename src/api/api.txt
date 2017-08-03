@@ -1,0 +1,61 @@
+https://code.google.com/codejam/contest/3264486/dashboard/do
+
+Method:POST
+
+:authority:code.google.com
+:method:POST
+:path:/codejam/contest/3264486/dashboard/do
+:scheme:https
+accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+accept-encoding:gzip, deflate, br
+accept-language:en-US,en;q=0.8,vi;q=0.6
+cache-control:max-age=0
+content-length:2714
+content-type:multipart/form-data; boundary=----WebKitFormBoundaryAIARWDuW5An870BX
+cookie:SID=YATAIJLVDjeREvolqEJyIJ4H54axfv1Oz4vHW31vOyuhX6fx1DMun9fw2VmFbVCBGTf6eA.; HSID=AQOl4mYTJR-Q72XEN; SSID=AwGtn-0lntfsYEzVo; APISID=MiOZ1mcshpU_kTbZ/AGTpGzXpDec30IN4J; SAPISID=kaupfeOjwAvxp2Uk/AZf8IJpqnvB8m93EY; S=billing-ui-v3=vwoIR_kKyU6CotktaoVHPy5654FVEAfV:billing-ui-v3-efe=vwoIR_kKyU6CotktaoVHPy5654FVEAfV:photos_html=r69r2npwm2NfzaGfA9OB_wST9QMSB78B; _ga=GA1.3.1361220363.1501738693; _gid=GA1.3.1780681094.1501738693; __utma=247248150.1361220363.1501738693.1501738700.1501738700.1; __utmc=247248150; __utmz=247248150.1501738700.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); NID=109=rEC-ZX6QZ6r3omXrE1Q4sLlwMgcaaLbMyfDybgxYja9-82VtxxGfwo7531eA0zk6btdR3imlp-HH7_hKXlCrGB80uyeNMtaSGpFOaR_Z5jC5VevS79HMa2YyvrqEsp7ugDqqQ9pXf1IqYgY51sgHblYB2vc7hqg8GxDMFHAHsdItcg1hzW_Cv_fXSA; SIDCC=AA248bevEIrZAu7jvO_EnNUFVBnGCDqglA56kctFtLt9kqz9xIv9yowrwAw-XsCvC2nYPI-ulkQaPhFFXqQ
+origin:https://code.google.com
+referer:https://code.google.com/codejam/contest/3264486/dashboard
+upgrade-insecure-requests:1
+user-agent:Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36
+x-chrome-uma-enabled:1
+x-client-data:CKC1yQEIjbbJAQijtskBCMS2yQEIi5jKAQj7nMoBCKmdygEI0p7KAQ==
+
+
+------WebKitFormBoundaryAIARWDuW5An870BX
+Content-Disposition: form-data; name="csrfmiddlewaretoken"
+
+ZmY2YzIzNjM4ZDI5YzgzOGUyZDkyNWMyZjYwZGE4MTR8fDE1MDE3Mzk4MDYwNjY4MzA=
+------WebKitFormBoundaryAIARWDuW5An870BX
+Content-Disposition: form-data; name="answer"; filename="large.out"
+Content-Type: application/octet-stream
+
+
+------WebKitFormBoundaryAIARWDuW5An870BX
+Content-Disposition: form-data; name="source-file0"; filename=""
+Content-Type: application/octet-stream
+
+
+------WebKitFormBoundaryAIARWDuW5An870BX
+Content-Disposition: form-data; name="cmd"
+
+SubmitAnswer
+------WebKitFormBoundaryAIARWDuW5An870BX
+Content-Disposition: form-data; name="problem"
+
+5736519012712448
+------WebKitFormBoundaryAIARWDuW5An870BX
+Content-Disposition: form-data; name="input_id"
+
+1
+------WebKitFormBoundaryAIARWDuW5An870BX
+Content-Disposition: form-data; name="num_source_files"
+
+1
+------WebKitFormBoundaryAIARWDuW5An870BX
+Content-Disposition: form-data; name="agent"
+
+website
+------WebKitFormBoundaryAIARWDuW5An870BX--
+
+
+{"msg": "Good Job!", "ok": true, "hasAnswer": true, "inputId": 1, "problemId": 0}

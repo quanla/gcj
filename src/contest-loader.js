@@ -50,7 +50,20 @@ const ContestLoader = {
                         fs.writeFile(`${toDir}/p${problemIndex}/io/sample.out`, readProblem.sample.out);
                     }
 
-                    fs.writeFile(`${toDir}/p${problemIndex}/test.js`, `const gcj = require("gcj");\ngcj.runSample(__dirname);`);
+                    if (!fs.existsSync(`${toDir}/p${problemIndex}/io-type.js`)) {
+                        fs.writeFile(`${toDir}/p${problemIndex}/io-type.js`, `module.exports = {\n`
+                            + `//    formatOutput: (output) => output == null ? "IMPOSSIBLE" : output,\n` +
+                            `};`
+                        );
+                    }
+                    if (!fs.existsSync(`${toDir}/p${problemIndex}/test.js`)) {
+                        fs.writeFile(`${toDir}/p${problemIndex}/test.js`, `const gcj = require("gcj");\ngcj.runSample(__dirname);\n` +
+                            problem.io.map((io) => `//gcj.runInput("${io.name}", __dirname);`).join("\n") + "\n"
+                        );
+                    }
+                    if (!fs.existsSync(`${toDir}/p${problemIndex}/solve-per-case.js`)) {
+                        fs.writeFile(`${toDir}/p${problemIndex}/solve-per-case.js`, `\nmodule.exports = (input) => {\n};`);
+                    }
 
                 }
             });

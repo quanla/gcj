@@ -19,16 +19,17 @@ function runSample(wd, options) {
             let solveOutput = solvePerCase(caseInput);
 
             let expected = expectedOutputs[caseIndex];
-            let actualOutput = ioType.formatOutput(solveOutput);
+            let actualOutput = ioType.formatOutput != null ? ioType.formatOutput(solveOutput) : solveOutput;
             let correct = expected == actualOutput;
 
 
             if (!correct) {
                 anyError = true;
-                console.error(`Wrong sample output in case #${caseIndex + 1}\n`
-                    + `   Expected: ${expected}\n`
-                    + `   Actual  : ${actualOutput}\n`
+                console.error(`Wrong output:\n`
+                    + `   Case    : #${caseIndex + 1}\n`
                     + `   Input   : ${caseInput}\n`
+                    + `   Solve   : ${actualOutput}\n`
+                    + `   Expected: ${expected}\n`
                 );
                 if (options.fastFail) {
                     return true;
@@ -57,7 +58,7 @@ function runInput(wd, inputName) {
             let solveOutput = solvePerCase(caseInput);
 
             // let expected = expectedOutputs[caseIndex];
-            let actualOutput = ioType.formatOutput(solveOutput);
+            let actualOutput = ioType.formatOutput != null ? ioType.formatOutput(solveOutput) : solveOutput;
             // let correct = expected == actualOutput;
 
             outputs.push(actualOutput);
