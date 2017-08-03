@@ -21,12 +21,12 @@ if (process.argv.length === 3) {
         console.log(`Loading contest id ${contestId}`);
 
         gcjApi.getContestInfo(contestId).then((contestInfo) => {
-            for (let i = 0; i < contestInfo.problems.length; i++) {
-                let problem = contestInfo.problems[i];
+            for (let problemIndex = 0; problemIndex < contestInfo.problems.length; problemIndex++) {
+                let problem = contestInfo.problems[problemIndex];
 
-                mkdir(`${process.cwd()}/p${i}`);
-                fs.writeFile(`${process.cwd()}/p${i}/intro.html`, problem.body);
-                fs.writeFile(`${process.cwd()}/p${i}/manifest.json`, JSON.stringify({
+                mkdir(`${process.cwd()}/p${problemIndex}`);
+                fs.writeFile(`${process.cwd()}/p${problemIndex}/intro.html`, problem.body);
+                fs.writeFile(`${process.cwd()}/p${problemIndex}/manifest.json`, JSON.stringify({
                     id: problem.id,
                     name: problem.name,
                     type: problem.type,
@@ -34,10 +34,21 @@ if (process.argv.length === 3) {
                     io: problem.io,
                 }));
 
+                mkdir(`${process.cwd()}/p${problemIndex}/io`);
+
+                for (let ioIndex = 0; ioIndex < problem.io.length; ioIndex++) {
+                    let io = problem.io[ioIndex];
+
+                    gcjApi.downloadInput(contestId, problem.id, ioIndex, io.name).then((input) => {
+                        // console.log(input);
+                        fs.writeFile(`${process.cwd()}/p${problemIndex}/io/${io.name}.in`, input);
+                    });
+                }
+
                 let readProblem = ProblemReader.readProblem(problem);
                 if (readProblem.sample) {
-                    fs.writeFile(`${process.cwd()}/p${i}/sample.in`, readProblem.sample.in);
-                    fs.writeFile(`${process.cwd()}/p${i}/sample.out`, readProblem.sample.out);
+                    fs.writeFile(`${process.cwd()}/p${problemIndex}/io/sample.in`, readProblem.sample.in);
+                    fs.writeFile(`${process.cwd()}/p${problemIndex}/io/sample.out`, readProblem.sample.out);
                 }
             }
         });

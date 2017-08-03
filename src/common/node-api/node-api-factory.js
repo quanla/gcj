@@ -17,22 +17,26 @@ const NodeApiFactory = {
         }
 
         function ajax(method) {
-            return (url, json) => {
+            return (url, json, options) => {
                 // console.log(urlModifier(url));
                 return new Promise((resolve, reject) => {
                     request({
                         url: urlModifier(url),
                         method,
                         headers: getHeaders({
-                            'Content-Type': 'application/json',
+                            'Content-Type': (options && options.contentType) || 'application/json',
                         }),
                         json
                     }, (err, res) => {
-                        try {
-                            resolve(JSON.parse(res.body));
-                        } catch (e) {
-                            console.log(res.body);
-                            console.error(e);
+                        if (options == null || options.contentType === undefined) {
+                            try {
+                                resolve(JSON.parse(res.body));
+                            } catch (e) {
+                                console.log(res.body);
+                                console.error(e);
+                            }
+                        } else {
+                            resolve(res.body);
                         }
 
                     });
