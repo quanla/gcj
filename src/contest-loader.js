@@ -20,6 +20,12 @@ const ContestLoader = {
             console.log(`Loading contest id ${contestId}`);
 
             gcjApi.getContestInfo(contestId).then((contestInfo) => {
+                // contestInfo
+                fs.writeFile(`${toDir}/contest-info.json`, JSON.stringify({
+                    id: contestId,
+                    url: url,
+                }));
+
                 for (let problemIndex = 0; problemIndex < contestInfo.problems.length; problemIndex++) {
                     let problem = contestInfo.problems[problemIndex];
 
