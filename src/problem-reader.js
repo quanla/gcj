@@ -20,7 +20,7 @@ function getBetween(content, from, to) {
     return ret;
 }
 
-console.log(getBetween(str, `<pre class="io-content">`, `</pre>`));
+// console.log(getBetween(str, `<pre class="io-content">`, `</pre>`));
 // console.log(str);
 
 const ProblemReader = {
