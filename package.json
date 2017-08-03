@@ -17,8 +17,10 @@
   },
   "homepage": "https://github.com/quanla/gcj#readme",
   "dependencies": {
+    "chokidar": "^1.7.0",
+    "common-utils": "1.0.0",
     "request": "^2.81.0",
-    "common-utils": "1.0.0"
+    "require-nocache": "^1.0.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1"

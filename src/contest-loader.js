@@ -49,6 +49,9 @@ const ContestLoader = {
                         fs.writeFile(`${toDir}/p${problemIndex}/io/sample.in`, readProblem.sample.in);
                         fs.writeFile(`${toDir}/p${problemIndex}/io/sample.out`, readProblem.sample.out);
                     }
+
+                    fs.writeFile(`${toDir}/p${problemIndex}/test.js`, `const gcj = require("gcj");\ngcj.runSample(__dirname);`);
+
                 }
             });
         }
